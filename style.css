@@ -1,0 +1,168 @@
+/* Apple Human Interface Guidelines-like color palette & standard variables */
+:root {
+    --bg-grouped: #F2F2F7;
+    --bg-cell: #FFFFFF;
+    --label-primary: #000000;
+    --label-secondary: #8A8A8E;
+    --accent-blue: #007AFF;
+    --separator: #C6C6C8;
+    --destructive: #FF3B30;
+    --corner-radius: 10px;
+}
+
+/* Base & resets */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-grouped);
+    color: var(--label-primary);
+    font-family: system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    line-height: 1.5
+}
+
+.app-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+}
+
+/* Form Area */
+.input-group {
+    display: flex;
+    background-color: var(--bg-cell);
+    border-radius: var(--corner-radius);
+    padding: 0.5rem;
+    margin-bottom: 2rem;   
+}
+
+#todo-input {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    font-size: 1.05rem;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    color: var(--label-primary);
+    outline: none;
+}
+
+#todo-input::placeholder {
+    color: var(--label-secondary);
+}
+
+#add-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent-blue);
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 0 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+#add-btn:active {
+    opacity: 0.6;
+}
+
+.todo-list {
+    list-style: none;
+    background-color: var(--bg-cell);
+    border-radius: var(--corner-radius);
+    overflow: hidden;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    position: relative;
+}
+
+/* Internal separator */
+.todo-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+}
+
+/* Custom checkbox mimicking Apple's circular toggles */
+.todo-checkbox {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--separator);
+    border-radius: 50%;
+    margin-right: 1rem;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.todo-checkbox:checked {
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+/* CSS-only checkmark */
+.todo-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 7.5px;
+    width: 4px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.todo-text {
+    flex-grow: 1;
+    font-size: 1.05rem;
+    transition: color 0.2s ease;
+    word-break: break-word;
+}
+
+.todo-item.completed .todo-text {
+    color: var(--label-secondary);
+}
+
+/* Delete button */
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: var(--destructive);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.todo-item:hover .delete-btn, .delete-btn:focus {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .delete-btn {
+        opacity: 1;
+    }
+}
